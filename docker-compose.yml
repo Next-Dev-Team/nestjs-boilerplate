@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  app:
+    image: "node:14-slim"
+    container_name: docker-nest-js
+    build:
+      context: .
+      dockerfile: DockerFile
+    user: "node"
+    working_dir: /usr/src/app
+    environment:
+      - NODE_ENV=production
+      - VERSION=1.0
+    volumes:
+      - .:/usr/src/app
+      - /usr/app/node_modules
+    ports:
+      - "3001:3001"
+    tty: true
+    command: "npm start"
+  
